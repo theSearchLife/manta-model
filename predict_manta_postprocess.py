@@ -23,10 +23,12 @@ if __name__=='__main__':
    if len(folder_out)==0:
       folder_out=folder+'_out'
    
-   folder_out_manta=folder_out+'/'+'manta'
-   folder_out_nonmanta=folder_out+'/'+'non_manta'
+   folder_out_manta=folder_out+'/'+'positive'
+   folder_out_nonmanta=folder_out+'/'+'negative'
+   folder_out_unkown=folder_out+'/'+'unknown'
    os.makedirs(folder_out_manta,exist_ok=True)
    os.makedirs(folder_out_nonmanta,exist_ok=True)
+   os.makedirs(folder_out_unkown,exist_ok=True)
    df = pd.read_csv(filename_csv)
    for ct in range(len(df)):
       filename= df['filename'].iloc[ct]
@@ -35,7 +37,10 @@ if __name__=='__main__':
       if prediction == 'manta':
          path_out=folder_out_manta+'/'+filename
       else:
-         path_out=folder_out_nonmanta+'/'+filename
+            if prediction == 'non manta':
+               path_out=folder_out_nonmanta+'/'+filename
+            else:
+               path_out=folder_out_unkown+'/'+filename
       src=folder+'/'+filename
       dst=path_out
       #print(src,dst)
