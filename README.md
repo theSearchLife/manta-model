@@ -31,6 +31,44 @@ arguments :
 - filename_csv   : csv file with columns filename, manta score, prediction
 - folder_out     : output folder with images divided in positive,negative,unknown
 
+### training
+
+- download the training dataset
+
+     gdown 1n431PCOY8RXZebY-cSnNycvAvCC4DfWK
+
+     unzip dataset_manta_cls3.zip
+
+- init model 
+
+     from ultralytics import YOLO
+
+     model = YOLO("yolo11n-cls.pt") ## this is for first training.  
+     #model=  YOLO(path_to_best_model) # this is to resume training 
+     
+-- run training
+
+     results = model.train(data="/content/dataset_manta_cls3", epochs=100, imgsz=640)
+     
+
+-- it's possible to add new training data just copying them to the correct folders in the base training dataset.
+
+   the training images must be converted to  grayscale  and optionally can be reduced to width size 640
+
+   the dayasey folders are
+
+   test
+
+   - manta
+
+   - non_manta
+
+   train
+
+   - manta
+
+   - non_manta
+
 
 
 
