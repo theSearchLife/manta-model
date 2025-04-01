@@ -55,7 +55,7 @@ arguments :
 
    the training images must be converted to  grayscale  and optionally can be reduced to width size 640
 
-   the dayasey folders are
+   the dataset folders are
 
    test
 
