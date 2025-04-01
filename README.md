@@ -46,12 +46,12 @@ arguments :
      model = YOLO("yolo11n-cls.pt") ## this is for first training.  
      #model=  YOLO(path_to_best_model) # this is to resume training 
      
--- run training
+- run training
 
      results = model.train(data="/content/dataset_manta_cls3", epochs=100, imgsz=640)
      
 
--- it's possible to add new training data just copying them to the correct folders in the base training dataset.
+- it's possible to add new training data just copying them to the correct folders in the base training dataset.
 
    the training images must be converted to  grayscale  and optionally can be reduced to width size 640
 
@@ -59,15 +59,15 @@ arguments :
 
    test
 
-   - manta
+   -- manta
 
-   - non_manta
+   -- non_manta
 
    train
 
-   - manta
+   -- manta
 
-   - non_manta
+   -- non_manta
 
 
 
