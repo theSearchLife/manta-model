@@ -20,10 +20,10 @@ def preprocess_640_gray(img):
 if __name__=='__main__':
     #parse parameters
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filename_model", type=str,default='yolo11cls_manta_640_grayscale.pt')
+    parser.add_argument("--filename_model", type=str,default='yolo11cls_manta_640_grayscale2.pt')
     parser.add_argument("--folder_images", type=str,required=True)
     parser.add_argument("--filename_out", type=str,required=True)
-    parser.add_argument("--th", type=float,default=0.2)
+    parser.add_argument("--th", type=float,default=0.5)
     
     args = parser.parse_args()
     
