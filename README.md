@@ -15,7 +15,7 @@ arguments :
 
 - folder_images  : folder with input images
 - filename_out   : output csv file with columns filename, manta score, prediction
-- filename_model : model , default yolo11cls_manta_640_grayscale2.pt
+- filename_model : model , default yolo11cls_manta_640_grayscale.pt
 - th             : score threshold, classified as manta if score >= threshold , default=0.2. th between 0 and 1. decrease th to decrese false negative and increase false positives   
   
   
