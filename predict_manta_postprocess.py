@@ -13,7 +13,7 @@ if __name__=='__main__':
    parser.add_argument("--folder_images", type=str,required=True)
    parser.add_argument("--folder_out", type=str,default='')
    parser.add_argument("--filename_csv", type=str,required=True)
-   parser.add_argument("--th", type=float,default=0.5)
+   parser.add_argument("--th", type=float,default=0.8)
    
    args = parser.parse_args()
    
