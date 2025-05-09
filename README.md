@@ -19,7 +19,10 @@ arguments :
 - filename_mask  : filename of mask (optional if not specified it will analyze full image)
 - th             : score threshold, classified as manta if score >= threshold , default=0.97. th between 0 and 1. decrease th to decrese false negative and increase false positives   
   
-  
+
+see the video instructions_for_mask.mp4 to create the mask
+
+
 ### postprocess 
 
 divide images in positive,negative,unknown based on the output csv file from the inference script
@@ -33,13 +36,29 @@ arguments :
 - folder_out     : output folder with images divided in positive,negative,unknown
 - th             : score threshold, classified as manta if score >= threshold
 
-### training
+### training with new data
 
-- download the training dataset
 
-     gdown 1n431PCOY8RXZebY-cSnNycvAvCC4DfWK
 
-     unzip dataset_manta_cls3.zip
+
+- download the last training dataset from https://drive.google.com/file/d/1urs0XvHI5AchrmBoNC0ngpTSg8ZBtgIE/view?usp=drive_link
+
+- unzip dataset_manta_cls4.zip
+  it will have these folders
+  folders are
+
+   test
+
+     manta
+
+     non_manta
+
+   train
+
+      manta
+
+      non_manta
+
 
 - init model 
 
@@ -47,29 +66,24 @@ arguments :
 
      model = YOLO("yolo11n-cls.pt") ## this is for first training.  
      #model=  YOLO(path_to_best_model) # this is to resume training 
+
+
+- add new images in the correct folders. better to add simila number of images in manta and non manta classes to keep the dataset balanced
      
-- run training
+- zip the new dataset to   dataset_manta_cls4.zip
+ 
+- upload the zip file on youg gdrive, get the link of the file and grant access to everyone with the link
 
-     results = model.train(data="/content/dataset_manta_cls3", epochs=100, imgsz=640)
-     
+- open colab and load the notebook mantatrust_mantaclassification_train.ipynb , go to Runtime/change Runtime type and set GPU 
 
-- it's possible to add new training data just copying them to the correct folders in the base training dataset.
+- in the first cell set the correct gdrive link for the dataset file and model file , the default values are the last model and dataset on my gdrive
 
-   the training images must be converted to  grayscale  and optionally can be reduced to width size 640
+- go to Runtime/execute all to run the notebook
 
-   the dataset folders are
+- after the training is completed you find the new model in /content/runs/classify/train/weights/best.pt that you can download locally 
 
-   test
 
-   -- manta
 
-   -- non_manta
-
-   train
-
-   -- manta
-
-   -- non_manta
 
 
 
