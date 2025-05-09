@@ -17,19 +17,33 @@ def preprocess_640_gray(img):
   return img
 
 
+def get_mask_binary(mask):
+    b,g,r=cv2.split(mask)
+    mask_bin=np.zeros((mask.shape[0],mask.shape[1]),dtype=np.uint8)
+    mask_bin[(b>200) & (g>200) & (r>200)]=1
+    target_width=640
+    scale=target_width/mask.shape[1]
+    target_height=int(scale*mask.shape[0])
+    mask_bin=cv2.resize(mask_bin,(target_width,target_height), interpolation=cv2.INTER_NEAREST)
+    return mask_bin
+
+
 if __name__=='__main__':
     #parse parameters
     parser = argparse.ArgumentParser()
     parser.add_argument("--filename_model", type=str,default='yolo11cls_manta_640_grayscale3.pt')
     parser.add_argument("--folder_images", type=str,required=True)
     parser.add_argument("--filename_out", type=str,required=True)
+    parser.add_argument("--filename_mask", type=str,default='')
     parser.add_argument("--th", type=float,default=0.97)
+    
     
     args = parser.parse_args()
     
     filename_model=args.filename_model
     folder=args.folder_images
     filename_out=args.filename_out
+    filename_mask=args.filename_mask
     model = YOLO(  filename_model)
     th=args.th
 
@@ -42,12 +56,23 @@ if __name__=='__main__':
     files=sorted(os.listdir(folder))
     ct=0
     
+    mask_bin=np.zeros((640,640),dtype='uint8')
+    if len(filename_mask)>0:
+      if os.path.exists(filename_mask):
+        print('using mask', filename_mask)
+        mask=cv2.imread(filename_mask)
+        mask_bin=get_mask_binary(mask)
+          
+
     for f in files:
         if ct%100==0:
           print('processing',f,ct,len(files))
         filename_fullpath=folder+'/'+f
         img=cv2.imread(filename_fullpath)
         img=preprocess_640_gray(img)
+        mask_bin=cv2.resize(mask_bin,(img.shape[1],img.shape[0]), interpolation=cv2.INTER_NEAREST)
+        img[mask_bin>0]=0
+        
         results = model(img,verbose=False,augment=False)
 
         score= round(float(results[0].probs.data[0]),3)

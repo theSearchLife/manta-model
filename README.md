@@ -9,14 +9,15 @@ tested with python 3.10
 
 ### inference
 
-     python predict_manta.py --folder_images demo_images --filename_out demo_images_out.csv
+     python predict_manta.py --folder_images demo_images --filename_out demo_images_out.csv --filename_mask demo_mask.png
 
 arguments :
 
 - folder_images  : folder with input images
 - filename_out   : output csv file with columns filename, manta score, prediction
-- filename_model : model , default yolo11cls_manta_640_grayscale2.pt
-- th             : score threshold, classified as manta if score >= threshold , default=0.5. th between 0 and 1. decrease th to decrese false negative and increase false positives   
+- filename_model : model , default yolo11cls_manta_640_grayscale3.pt
+- filename_mask  : filename of mask (optional if not specified it will analyze full image)
+- th             : score threshold, classified as manta if score >= threshold , default=0.97. th between 0 and 1. decrease th to decrese false negative and increase false positives   
   
   
 ### postprocess 
