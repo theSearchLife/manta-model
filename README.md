@@ -47,32 +47,24 @@ arguments :
   it will have these folders
   folders are
 
-   test
+  test
 
      manta
 
      non_manta
 
-   train
+  train
 
       manta
 
       non_manta
 
 
-- init model 
-
-     from ultralytics import YOLO
-
-     model = YOLO("yolo11n-cls.pt") ## this is for first training.  
-     #model=  YOLO(path_to_best_model) # this is to resume training 
-
-
 - add new images in the correct folders. better to add simila number of images in manta and non manta classes to keep the dataset balanced
      
 - zip the new dataset to   dataset_manta_cls4.zip
  
-- upload the zip file on youg gdrive, get the link of the file and grant access to everyone with the link
+- upload the zip file on your gdrive, get the link of the file and grant access to everyone with the link
 
 - open colab and load the notebook mantatrust_mantaclassification_train.ipynb , go to Runtime/change Runtime type and set GPU 
 
