@@ -72,7 +72,9 @@ arguments :
 
 - go to Runtime/execute all to run the notebook
 
-- after the training is completed you find the new model in /content/runs/classify/train/weights/best.pt that you can download locally 
+- after the training is completed you find the new model in /content/runs/classify/train/weights/best.pt that you can download locally
+
+  see the videos instructions_train1.mp4 instructions_train2.mp4 instructions_train3.mp4
 
 
 
