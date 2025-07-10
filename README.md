@@ -1,6 +1,5 @@
 ## CLASSIFIER MODEL
   
-tested with python 3.10
 
 ### install 
 
