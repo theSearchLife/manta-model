@@ -65,6 +65,7 @@ if __name__=='__main__':
           
 
     for f in files:
+      try:
         if ct%100==0:
           print('processing',f,ct,len(files))
         filename_fullpath=folder+'/'+f
@@ -85,6 +86,9 @@ if __name__=='__main__':
         predictions.append(prediction)
         filenames_test.append(f)
         ct+=1
+
+      except:
+         print('error ',f)
 
     dict = {'filename': filenames_test, 'Manta score ': scores, 'prediction': predictions }
     df = pd.DataFrame(dict)
